@@ -1,13 +1,22 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import { PersonListPage, DetailPersonPage } from '../pages'
+
 import './app.css'
 
-import { withAppService } from '../hoc'
-
-const App = ({ appService }) => {
-  
-  console.log(appService.getPeople()) // []
-  
-  return <div>App</div>
+const App = () => {  
+  return (
+    <Switch>
+      <Route 
+        path="/"
+        component={PersonListPage}
+        exact />
+      <Route 
+        path={`/person/`}
+        component={DetailPersonPage} />
+    </Switch>
+  )
 }
 
-export default withAppService()(App)
+export default App

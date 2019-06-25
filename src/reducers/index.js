@@ -1,5 +1,5 @@
 const initialState = {
-  people: []
+  people: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'PEOPLE_LOADED':
       return {
-        people: action.payload
+        people: action.payload,
       }
 
     default:
