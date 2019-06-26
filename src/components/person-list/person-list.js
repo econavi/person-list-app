@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { withAppService } from '../hoc'
-import { peopleLoaded } from '../../actions'
+import { personSelected } from '../../actions'
+
 import PersonListItem from '../person-list-item'
+
 
 import './person-list.css'
 
 class PersonList extends Component {
   
-  componentDidMount() {
-    // Получим данные
-    const { appService, peopleLoaded } = this.props
-    const data = appService.getPeople()
-    
-    // Передадим данные в Store
-    peopleLoaded(data)
+  onItemSelected = (id) => {
+    const { personSelected } = this.props
+    personSelected(id)
   }
   
   render() {
@@ -34,7 +31,8 @@ class PersonList extends Component {
           {
             people.map((person) => {
               return (
-                <tr key={person.id}>
+                <tr key={person.id}
+                    onClick={() => { this.onItemSelected(person.id) }}>
                   <PersonListItem person={person} />
                 </tr>
               )
@@ -47,11 +45,13 @@ class PersonList extends Component {
 }
 
 const mapStateToProps = ({ people }) => {
-  return { people }
+  return {
+    people,
+  }
 }
 
 const mapDispatchToProps = {
-  peopleLoaded,
+  personSelected,
 }
 
-export default withAppService()(connect(mapStateToProps, mapDispatchToProps)(PersonList))
+export default connect(mapStateToProps, mapDispatchToProps)(PersonList)

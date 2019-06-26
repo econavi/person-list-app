@@ -1,22 +1,35 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { Component } from 'react'
+// import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { PersonListPage, DetailPersonPage } from '../pages'
+import { PersonListPage, PersonDetailsPage } from '../pages'
 
 import './app.css'
 
-const App = () => {  
-  return (
-    <Switch>
-      <Route 
-        path="/"
-        component={PersonListPage}
-        exact />
-      <Route 
-        path={`/person/`}
-        component={DetailPersonPage} />
-    </Switch>
-  )
+class App extends Component {
+  render() {  
+    return (
+      <div>
+        <PersonListPage />
+        <PersonDetailsPage />
+      </div>
+      // <Switch>
+      //   <Route 
+      //     path="/"
+      //     component={ () => <PersonListPage onAddToPersonList={()=>{console.log(1)}} /> }
+      //     exact />
+      //   <Route 
+      //     path={`/person/`}
+      //     component={PersonDetailsPage} />
+      // </Switch>
+    )
+  }
 }
 
-export default App
+const mapStateToProps = ({ selectedPersonId }) => {
+  return {
+    selectedPersonId,
+  }
+}
+
+export default connect(mapStateToProps)(App)
