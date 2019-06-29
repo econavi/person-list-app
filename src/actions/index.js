@@ -1,15 +1,7 @@
-
 const peopleLoaded = (newPeople) => {
   return {
     type: 'FETCH_PEOPLE_SUCCESS',
     payload: newPeople,
-  }
-}
-
-const personSelected = (personId) => {
-  return {
-    type: 'PERSON_SELECTED',
-    payload: personId,
   }
 }
 
@@ -22,6 +14,5 @@ const personLoaded = (newPerson) => {
 
 export {
   peopleLoaded,
-  personSelected,
   personLoaded,
 }

@@ -1,7 +1,7 @@
-import PersonListPage from './person-list-page'
+import PeoplePage from './people-page'
 import PersonDetailsPage from './person-details-page'
 
 export {
-  PersonListPage,
+  PeoplePage,
   PersonDetailsPage,
 }

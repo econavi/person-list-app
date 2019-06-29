@@ -4,10 +4,7 @@ import { connect } from 'react-redux'
 import { withAppService } from '../hoc'
 import { personLoaded } from '../../actions'
 
-import PersonDetails from '../person-details'
-
 class PersonDetailsPage extends Component {
-
   componentDidMount() {
     this.updatePerson()
   }
@@ -19,8 +16,10 @@ class PersonDetailsPage extends Component {
 
   updatePerson() {
     const { appService, personLoaded, personId } = this.props
+    
     if (!personId) return
-    const data = appService.getPerson(personId)
+    
+    const data = appService.getPerson(+personId)
     personLoaded(data)
   }
 
@@ -29,19 +28,24 @@ class PersonDetailsPage extends Component {
     
     if (!person) return null
     
+    const { name, surname, position } = person
+    
     return (
       <div>
         <h2>Детальная страница</h2>
-        <PersonDetails person={person} />
+        <div>
+          <span>{name}</span>
+          <span>{surname}</span>
+          <span>{position}</span>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ selectedPersonId, selectedPersonData }) => {
+const mapStateToProps = ({ selectedPersonData }) => {
   return {
     person: selectedPersonData,
-    personId: selectedPersonId,
   }
 }
 

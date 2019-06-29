@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-// import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { PersonListPage, PersonDetailsPage } from '../pages'
+import { PeoplePage, PersonDetailsPage } from '../pages'
 
 import './app.css'
 
@@ -10,18 +10,17 @@ class App extends Component {
   render() {  
     return (
       <div>
-        <PersonListPage />
-        <PersonDetailsPage />
+        <Route 
+          path="/"
+          component={PeoplePage}
+          exact />
+        <Route 
+          path={`/people/:id`}
+          render={({ match }) => {
+            const { id } = match.params
+            return <PersonDetailsPage personId={id} />
+          }} />
       </div>
-      // <Switch>
-      //   <Route 
-      //     path="/"
-      //     component={ () => <PersonListPage onAddToPersonList={()=>{console.log(1)}} /> }
-      //     exact />
-      //   <Route 
-      //     path={`/person/`}
-      //     component={PersonDetailsPage} />
-      // </Switch>
     )
   }
 }
