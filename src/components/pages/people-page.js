@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
-import { peopleLoaded } from '../../actions'
+import { peopleLoaded, addNewPerson } from '../../actions'
+import { getFormData } from '../../utils'
 
 import PersonList from '../person-list'
 
@@ -18,6 +19,19 @@ class PeoplePage extends Component {
     const { history } = this.props;
     history.push(`/people/${id}`)
   }
+  
+  onAddNewPerson = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const { name, surname, position } = getFormData(form)
+    
+    const newPerson = {
+      name, surname, position
+    }
+
+    this.props.addNewPerson(newPerson)
+    form.reset()
+  }
 
   render() {
     const { people } = this.props
@@ -30,6 +44,13 @@ class PeoplePage extends Component {
         <PersonList 
           people={people}
           onPersonSelected={this.onPersonSelected} />
+
+        <form onSubmit={this.onAddNewPerson}>
+          <input name="name" />
+          <input name="surname" />
+          <input name="position" />
+          <button>Добавить</button>
+        </form>
       </div>
     )
   }
@@ -43,6 +64,7 @@ const mapStateToProps = ({ people }) => {
 
 const mapDispatchToProps = {
   peopleLoaded,
+  addNewPerson,
 }
 
 export default withRouter(withAppService()(connect(mapStateToProps, mapDispatchToProps)(PeoplePage)))

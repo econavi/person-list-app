@@ -12,7 +12,15 @@ const personLoaded = (newPerson) => {
   }
 }
 
+const addNewPerson = (newPerson) => {
+  return {
+    type: 'ADD_NEW_PERSON',
+    payload: newPerson,
+  }
+}
+
 export {
   peopleLoaded,
   personLoaded,
+  addNewPerson,
 }

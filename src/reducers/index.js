@@ -4,7 +4,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-
   switch (action.type) {
     case 'FETCH_PEOPLE_SUCCESS':
       return {
@@ -14,6 +13,34 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_PERSON_SUCCESS':
       return {
         selectedPersonData: action.payload,
+      }
+
+    case 'ADD_NEW_PERSON':
+      const personData = action.payload
+      
+      const nextPersonId = (people) => {
+        const idArr = people.reduce((acc, elem) => {
+          if (!elem) return acc
+          return [...acc, elem.id]
+        }, [])
+
+        const lastId = (arr) => {
+          return arr.reduce((acc, elem) => {
+            if (!elem) return acc
+            return acc > elem ? acc : elem
+          })
+        }
+        
+        return lastId(idArr) + 1
+      }
+      
+      const newPerson = { ...personData, id: nextPersonId(state.people) }
+
+      const newPeople = [...state.people, newPerson]
+      
+      return {
+        ...state,
+        people: newPeople, 
       }
 
     default:
