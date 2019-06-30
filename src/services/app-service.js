@@ -1,6 +1,6 @@
 export default class AppService {
-
-  data = [
+  
+  dummyData = [
     { 
       id: 1,
       name: 'Михаил',
@@ -13,11 +13,16 @@ export default class AppService {
       position: 'HR' },
   ]
 
+  getData = () => {
+    const stoarge = JSON.parse(localStorage.getItem('people-storage'))
+    return stoarge || this.dummyData 
+  }
+
   getAllPeople = () => {
-    return this.data
+    return this.getData()
   }
   
   getPerson = (id) => {
-    return this.data.find((elem) => id === elem.id)
+    return this.getData().find((elem) => id === elem.id)
   }
 }

@@ -38,6 +38,8 @@ const reducer = (state = initialState, action) => {
 
       const newPeople = [...state.people, newPerson]
       
+      localStorage.setItem('people-storage', JSON.stringify(newPeople))
+      
       return {
         ...state,
         people: newPeople, 
