@@ -14,6 +14,10 @@ class PeoplePage extends Component {
     const data = appService.getAllPeople()
     peopleLoaded(data)
   }
+  
+  componentWillUnmount() {
+    localStorage.setItem('people-storage', JSON.stringify(this.props.people))
+  }
 
   onPersonSelected = (id) => {
     const { history } = this.props;

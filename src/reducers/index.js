@@ -23,22 +23,19 @@ const reducer = (state = initialState, action) => {
           if (!elem) return acc
           return [...acc, elem.id]
         }, [])
-
+      
         const lastId = (arr) => {
           return arr.reduce((acc, elem) => {
             if (!elem) return acc
             return acc > elem ? acc : elem
           })
         }
-        
+      
         return lastId(idArr) + 1
       }
       
       const newPerson = { ...personData, id: nextPersonId(state.people) }
-
-      const newPeople = [...state.people, newPerson]
-      
-      localStorage.setItem('people-storage', JSON.stringify(newPeople))
+      const newPeople = [ ...state.people, newPerson ]
       
       return {
         ...state,
