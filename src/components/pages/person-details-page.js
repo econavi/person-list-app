@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
 import { personLoaded } from '../../actions'
 
 class PersonDetailsPage extends Component {
+  updatePerson() {
+    const { appService, personLoaded, personId } = this.props
+    if (!personId) return
+    
+    const data = appService.getPerson(+personId)
+    personLoaded(data)
+  }
+  
   componentDidMount() {
     this.updatePerson()
   }
@@ -12,15 +21,6 @@ class PersonDetailsPage extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.personId === prevProps.personId) return
     this.updatePerson()
-  }
-
-  updatePerson() {
-    const { appService, personLoaded, personId } = this.props
-    
-    if (!personId) return
-    
-    const data = appService.getPerson(+personId)
-    personLoaded(data)
   }
 
   render() {
@@ -32,6 +32,7 @@ class PersonDetailsPage extends Component {
     
     return (
       <div>
+        <Link to="/">Назад</Link>
         <h2>Детальная страница</h2>
         <div>
           <span>{name}</span>
