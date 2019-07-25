@@ -2,12 +2,14 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import { PeoplePage, PersonDetailsPage } from '../pages'
+import Modal from '../modal'
 
 import './app.css'
 
 const App = () => {
   return (
     <div>
+      <Modal />
       <Route 
         path="/"
         component={PeoplePage}

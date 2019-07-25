@@ -36,6 +36,10 @@ class PeoplePage extends Component {
     this.props.addNewPerson(newPerson)
     form.reset()
   }
+  
+  onClickAddBtn = () => {
+    
+  }
 
   render() {
     const { people } = this.props
@@ -53,16 +57,17 @@ class PeoplePage extends Component {
           <input name="name" />
           <input name="surname" />
           <input name="position" />
-          <button>Добавить</button>
+          <button onClick={this.onClickAddBtn}>Добавить</button>
         </form>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ people }) => {
+const mapStateToProps = ({ people, modalIsOpen }) => {
   return {
     people,
+    modalIsOpen,
   }
 }
 

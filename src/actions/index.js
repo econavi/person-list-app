@@ -19,8 +19,23 @@ const addNewPerson = (newPerson) => {
   }
 }
 
+const openModal = (options) => {
+  return {
+    type: 'OPEN_MODAL',
+    ...options,
+  }
+}
+
+const closeModal = () => {
+  return {
+    type: 'CLOSE_MODAL',
+  }
+}
+
 export {
   peopleLoaded,
   personLoaded,
   addNewPerson,
+  openModal,
+  closeModal,
 }

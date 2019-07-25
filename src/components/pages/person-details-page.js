@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
 import { personLoaded } from '../../actions'
+import { openModal } from '../../actions'
 
 class PersonDetailsPage extends Component {
   updatePerson() {
@@ -22,6 +23,14 @@ class PersonDetailsPage extends Component {
     if (this.props.personId === prevProps.personId) return
     this.updatePerson()
   }
+  
+  edit = () => {
+    const { openModal } = this.props;
+    openModal({
+      modalTitle: "Редактировать данные сотрудника",
+      modalContent: null,
+    });
+  }
 
   render() {
     const { person } = this.props
@@ -39,6 +48,7 @@ class PersonDetailsPage extends Component {
           <span>{surname}</span>
           <span>{position}</span>
         </div>
+        <button onClick={this.edit}>Редактировать</button>
       </div>
     )
   }
@@ -52,6 +62,7 @@ const mapStateToProps = ({ selectedPersonData }) => {
 
 const mapDispatchToProps = {
   personLoaded,
+  openModal,
 }
 
 export default withAppService()(connect(mapStateToProps, mapDispatchToProps)(PersonDetailsPage))

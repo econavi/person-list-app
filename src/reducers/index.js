@@ -1,6 +1,9 @@
 const initialState = {
   people: null,
   selectedPersonData: null,
+  modalIsOpen: false,
+  modalTitle: null,
+  modalContent: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,7 +44,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         people: newPeople, 
       }
-
+    
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        modalIsOpen: true,
+        modalTitle: action.modalTitle,
+        modalContent: action.modalContent,
+      }
+    
+    case 'CLOSE_MODAL':
+      return {
+        ...state,
+        modalIsOpen: false,
+      }
+    
     default:
       return state
   }
