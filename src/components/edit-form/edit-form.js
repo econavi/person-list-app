@@ -18,9 +18,9 @@ class EditForm extends Component {
       surname,
       position,
       errors: {
-        name: { mass: '', valid: true },
-        surname: { mass: '', valid: true },
-        position: { mass: '', valid: true },
+        name: { mess: '', valid: true },
+        surname: { mess: '', valid: true },
+        position: { mess: '', valid: true },
       }
     }
   }
@@ -31,9 +31,9 @@ class EditForm extends Component {
       this.setState((prevState) => {
         return {
           errors: {
-            name: { valid: !!prevState.name, mass: 'Укажите имя' },
-            surname: { valid: !!prevState.surname, mass: 'Укажите фамилию' },
-            position: { valid: !!prevState.position, mass: 'Укажите должность' },
+            name: { valid: !!prevState.name, mess: 'Укажите имя' },
+            surname: { valid: !!prevState.surname, mess: 'Укажите фамилию' },
+            position: { valid: !!prevState.position, mess: 'Укажите должность' },
           }
         }
       })
@@ -73,9 +73,9 @@ class EditForm extends Component {
         <form>
           <div className="modal-body">
             <p>ID: {id}</p>
-            <Input error={!errors.name.valid ? errors.name.mass : null} onChange={this.inputOnChange} name="name" value={name} />
-            <Input error={!errors.surname.valid ? errors.surname.mass : null} onChange={this.inputOnChange} name="surname" value={surname} />
-            <Input error={!errors.position.valid ? errors.position.mass : null} onChange={this.inputOnChange} name="position" value={position} />
+            <Input error={!errors.name.valid ? errors.name.mess : null} onChange={this.inputOnChange} name="name" value={name} />
+            <Input error={!errors.surname.valid ? errors.surname.mess : null} onChange={this.inputOnChange} name="surname" value={surname} />
+            <Input error={!errors.position.valid ? errors.position.mess : null} onChange={this.inputOnChange} name="position" value={position} />
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={this.onCancel}>Отмена</button>
