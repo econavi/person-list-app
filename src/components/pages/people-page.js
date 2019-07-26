@@ -9,6 +9,7 @@ import { getFormData } from '../../utils'
 import PersonList from '../person-list'
 
 class PeoplePage extends Component {
+  
   componentDidMount() {
     const { appService, peopleLoaded } = this.props
     const data = appService.getAllPeople()
@@ -28,11 +29,9 @@ class PeoplePage extends Component {
     e.preventDefault()
     const form = e.target
     const { name, surname, position } = getFormData(form)
-    
     const newPerson = {
       name, surname, position
     }
-
     this.props.addNewPerson(newPerson)
     form.reset()
   }
@@ -43,7 +42,7 @@ class PeoplePage extends Component {
 
   render() {
     const { people } = this.props
-    
+    console.log(people);
     if (!people) return null
     
     return (

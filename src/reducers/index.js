@@ -15,6 +15,7 @@ const reducer = (state = initialState, action) => {
 
     case 'FETCH_PERSON_SUCCESS':
       return {
+        ...state,
         selectedPersonData: action.payload,
       }
 
@@ -26,20 +27,20 @@ const reducer = (state = initialState, action) => {
           if (!elem) return acc
           return [...acc, elem.id]
         }, [])
-      
+
         const lastId = (arr) => {
           return arr.reduce((acc, elem) => {
             if (!elem) return acc
             return acc > elem ? acc : elem
           })
         }
-      
+
         return lastId(idArr) + 1
       }
-      
+
       const newPerson = { ...personData, id: nextPersonId(state.people) }
       const newPeople = [ ...state.people, newPerson ]
-      
+
       return {
         ...state,
         people: newPeople, 
@@ -57,6 +58,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         modalIsOpen: false,
+        modalTitle: null,
+        modalContent: null,
+      }
+    
+    case 'PERSON_UPDATE':
+      const { people } = state
+      const { id, name, surname, position } = action.payload
+      const idx = people.findIndex(item => item.id === +id)
+      
+      const newDataPerson = {
+        id: +id,
+        name, surname, position,
+      }
+
+      return {
+        ...state,
+        people: [
+          ...state.people.slice(0, idx),
+          { ...newDataPerson },
+          ...state.people.slice(idx + 1),
+        ]
       }
     
     default:

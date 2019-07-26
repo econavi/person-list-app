@@ -32,10 +32,18 @@ const closeModal = () => {
   }
 }
 
+const personUpdate = (newDataPerson) => {
+  return {
+    type: 'PERSON_UPDATE',
+    payload: newDataPerson,
+  }
+}
+
 export {
   peopleLoaded,
   personLoaded,
   addNewPerson,
   openModal,
   closeModal,
+  personUpdate,
 }
