@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
-import { peopleLoaded, addNewPerson } from '../../actions'
-import { getFormData } from '../../utils'
+import { peopleLoaded, addNewPerson, openModal } from '../../actions'
 
 import PersonList from '../person-list'
+import AddForm from '../add-form'
 
 class PeoplePage extends Component {
   
@@ -25,24 +25,24 @@ class PeoplePage extends Component {
     history.push(`/people/${id}`)
   }
   
-  onAddNewPerson = (e) => {
-    e.preventDefault()
-    const form = e.target
-    const { name, surname, position } = getFormData(form)
-    const newPerson = {
+  addNewPerson = (data) => {
+    const { name, surname, position } = data
+    this.props.addNewPerson({
       name, surname, position
-    }
-    this.props.addNewPerson(newPerson)
-    form.reset()
+    })
+
   }
   
-  onClickAddBtn = () => {
-    
+  onClickAddPerson = (e) => {
+    e.preventDefault()
+    this.props.openModal({
+      modalTitle: "Новый сотрудник",
+      modalContent: <AddForm addNewData={this.addNewPerson} />,
+    });
   }
 
   render() {
     const { people } = this.props
-    console.log(people);
     if (!people) return null
     
     return (
@@ -50,29 +50,24 @@ class PeoplePage extends Component {
         <h2>Список сотрудников</h2>
         <PersonList 
           people={people}
-          onPersonSelected={this.onPersonSelected} />
-
-        <form onSubmit={this.onAddNewPerson}>
-          <input name="name" />
-          <input name="surname" />
-          <input name="position" />
-          <button onClick={this.onClickAddBtn}>Добавить</button>
-        </form>
+          onPersonSelected={this.onPersonSelected}
+        />
+        <button type="button" onClick={this.onClickAddPerson}>Добавить</button>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ people, modalIsOpen }) => {
+const mapStateToProps = ({ people }) => {
   return {
     people,
-    modalIsOpen,
   }
 }
 
 const mapDispatchToProps = {
   peopleLoaded,
   addNewPerson,
+  openModal,
 }
 
 export default withRouter(withAppService()(connect(mapStateToProps, mapDispatchToProps)(PeoplePage)))

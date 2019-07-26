@@ -7,14 +7,12 @@ import { openModal, personLoaded, personUpdate, peopleLoaded } from '../../actio
 
 import EditForm from '../edit-form'
 
-import { getFormData } from '../../utils'
-
 class PersonDetailsPage extends Component {
   
   state = {
-    name: null,
-    surname: null,
-    position: null,
+    name: '',
+    surname: '',
+    position: '',
   }
   
   updatePerson() {
