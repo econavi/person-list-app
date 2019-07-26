@@ -1,21 +1,25 @@
+import LocalStorageManager from './localstorage'
+
 export default class AppService {
   
   dummyData = [
     { 
-      id: 1,
       name: 'Михаил',
       surname: 'Горячев',
-      position: 'Интернет-маркетолог' },
+      position: 'Интернет-маркетолог',
+      id: 1,
+    },
     { 
-      id: 2,
       name: 'Татьяна',
       surname: 'Долгова',
-      position: 'HR' },
+      position: 'HR',
+      id: 2,
+    },
   ]
 
   getData = () => {
-    const stoarge = JSON.parse(localStorage.getItem('people-storage'))
-    return stoarge || this.dummyData 
+    const storage = LocalStorageManager.get()
+    return storage || this.dummyData 
   }
 
   getAllPeople = () => {

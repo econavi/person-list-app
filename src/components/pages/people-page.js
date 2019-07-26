@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
 import { peopleLoaded, addNewPerson, openModal } from '../../actions'
+import LocalStorageManager from '../../services/localstorage'
 
 import PersonList from '../person-list'
 import AddForm from '../add-form'
@@ -17,7 +18,12 @@ class PeoplePage extends Component {
   }
   
   componentWillUnmount() {
-    localStorage.setItem('people-storage', JSON.stringify(this.props.people))
+    LocalStorageManager.set(this.props.people)
+  }
+  
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    LocalStorageManager.set(this.props.people)
   }
 
   onPersonSelected = (id) => {
@@ -30,7 +36,6 @@ class PeoplePage extends Component {
     this.props.addNewPerson({
       name, surname, position
     })
-
   }
   
   onClickAddPerson = (e) => {

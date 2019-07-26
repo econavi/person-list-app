@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { withAppService } from '../hoc'
 import { openModal, personLoaded, personUpdate, peopleLoaded } from '../../actions'
+import LocalStorageManager from '../../services/localstorage'
 
 import EditForm from '../edit-form'
 
@@ -34,8 +35,8 @@ class PersonDetailsPage extends Component {
     this.updatePerson()
   }
   
-  componentWillUnmount() {
-    localStorage.setItem('people-storage', JSON.stringify(this.props.people))
+  componentDidUpdate() {
+    LocalStorageManager.set(this.props.people)
   }
   
   onClickSave = (data) => {
@@ -48,6 +49,8 @@ class PersonDetailsPage extends Component {
     this.props.personUpdate({
       id, name, surname, position,
     })
+    const { personLoaded } = this.props
+    personLoaded(data)
   }
   
   onClickEdit = () => {
