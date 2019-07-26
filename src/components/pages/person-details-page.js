@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { withAppService } from '../hoc'
 import { openModal, personLoaded, personUpdate, peopleLoaded } from '../../actions'
 
-import EditModal from '../edit-modal'
+import EditForm from '../edit-form'
 
 import { getFormData } from '../../utils'
 
@@ -40,9 +40,8 @@ class PersonDetailsPage extends Component {
     localStorage.setItem('people-storage', JSON.stringify(this.props.people))
   }
   
-  onClickSave = (target) => {
-    const { id, name, surname, position } = getFormData(target)
-    console.log('onClickSave', this.props.people);
+  onClickSave = (data) => {
+    const { id, name, surname, position } = data
     this.setState({
       name,
       surname,
@@ -56,8 +55,8 @@ class PersonDetailsPage extends Component {
   onClickEdit = () => {
     const { openModal, person } = this.props;
     openModal({
-      modalTitle: "Редактировать данные сотрудника",
-      modalContent: <EditModal data={person} onChangeData={this.onClickSave} />,
+      modalTitle: "Изменить данные",
+      modalContent: <EditForm data={person} onChangeData={this.onClickSave} />,
     });
   }
 

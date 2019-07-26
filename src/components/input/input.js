@@ -1,20 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
+
 
 class Input extends Component {
-    state = {
-      value: this.props.value,
+  
+    constructor(props) {
+      super(props)
+      this.state = {
+        value: this.props.value,
+      }
     }
     
-    handleChange = ({ target }) => {
-      const { value } = target
+    handleChange = (event) => {
+      this.props.onChange(event.target)
       this.setState({
-        value,
+        value: event.target.value,
       })
     }
   
     render() {
-      const { type, name } = this.props
+      const { type, name, error } = this.props
+      const inputClasses = classnames({
+        'form-control': true,
+        'is-invalid': !!error,
+      })
+      
       return (
         <div className="form-group">
           <input 
@@ -22,16 +33,20 @@ class Input extends Component {
             name={name}
             value={this.state.value}
             onChange={this.handleChange}
-            className="form-control"
+            className={inputClasses}
           />
+          { error && <span className="text-danger">{error}</span> }
         </div>
       )
     }
 }
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   type: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  error: PropTypes.string,
 }
 
 Input.defaultProps = {
