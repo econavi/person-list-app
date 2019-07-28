@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react'
 
-import './person-list-item.css'
-
 const PersonListItem = ({ person }) => {
   const { name, surname, position } = person
   return (
