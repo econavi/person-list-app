@@ -1,0 +1,9 @@
+.person-details__table tr td:first-child {
+  font-weight: 700;
+}
+
+@media (min-width: 480px) {
+  .person-details__table tr td:first-child {
+    width: 30%;
+  }
+}
