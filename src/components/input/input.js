@@ -20,7 +20,7 @@ class Input extends Component {
     }
   
     render() {
-      const { type, name, error } = this.props
+      const { type, name, error, placeholder } = this.props
       const inputClasses = classnames({
         'form-control': true,
         'is-invalid': !!error,
@@ -34,6 +34,7 @@ class Input extends Component {
             value={this.state.value}
             onChange={this.handleChange}
             className={inputClasses}
+            placeholder={placeholder}
           />
           { error && <span className="text-danger">{error}</span> }
         </div>
@@ -47,6 +48,7 @@ Input.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   error: PropTypes.string,
+  placeholder: PropTypes.string,
 }
 
 Input.defaultProps = {
