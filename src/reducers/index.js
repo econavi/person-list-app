@@ -64,12 +64,12 @@ const reducer = (state = initialState, action) => {
     
     case 'PERSON_UPDATE':
       const { people } = state
-      const { id, name, surname, position } = action.payload
+      const { id, name, surname, position, info } = action.payload
       const idx = people.findIndex(item => item.id === +id)
       
       const newDataPerson = {
         id: +id,
-        name, surname, position,
+        name, surname, position, info,
       }
 
       return {

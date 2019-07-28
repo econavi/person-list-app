@@ -8,12 +8,15 @@ import LocalStorageManager from '../../services/localstorage'
 
 import EditForm from '../edit-form'
 
+import './person-details-page.css'
+
 class PersonDetailsPage extends Component {
   
   state = {
     name: '',
     surname: '',
     position: '',
+    info: '',
   }
   
   updatePerson() {
@@ -24,6 +27,7 @@ class PersonDetailsPage extends Component {
       name: person.name,
       surname: person.surname,
       position: person.position,
+      info: person.info,
     })
     personLoaded(person)
   }
@@ -40,14 +44,15 @@ class PersonDetailsPage extends Component {
   }
   
   onClickSave = (data) => {
-    const { id, name, surname, position } = data
+    const { id, name, surname, position, info } = data
     this.setState({
       name,
       surname,
       position,
+      info,
     })
     this.props.personUpdate({
-      id, name, surname, position,
+      id, name, surname, position, info,
     })
     const { personLoaded } = this.props
     personLoaded(data)
@@ -64,14 +69,41 @@ class PersonDetailsPage extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Назад</Link>
-        <h2>Детальная страница</h2>
-        <div>
-          <span>{this.state.name}</span>
-          <span>{this.state.surname}</span>
-          <span>{this.state.position}</span>
+        <h2 className="mb-4">Детальная страница</h2>
+        
+        <Link 
+          to="/"
+          className="btn btn-secondary mb-4"
+        >
+          К списку
+        </Link>
+
+        <div className="table-responsive person-details mb-3">
+          <table className="table table-borderless person-details__table">
+            <tbody>
+              <tr>
+                <td>Имя:</td>
+                <td>{this.state.name}</td>
+              </tr>
+              <tr>
+                <td>Фамилия:</td>
+                <td>{this.state.surname}</td>
+              </tr>
+              <tr>
+                <td>Должность:</td>
+                <td>{this.state.position}</td>
+              </tr>
+              <tr>
+                <td>Описание:</td>
+                <td>{this.state.info}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <button onClick={this.onClickEdit}>Редактировать</button>
+        <button 
+          onClick={this.onClickEdit}
+          className="btn btn-primary"
+        >Редактировать</button>
       </div>
     )
   }

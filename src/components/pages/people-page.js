@@ -22,7 +22,6 @@ class PeoplePage extends Component {
   }
   
   componentDidUpdate() {
-    console.log('componentDidUpdate');
     LocalStorageManager.set(this.props.people)
   }
 
@@ -32,9 +31,9 @@ class PeoplePage extends Component {
   }
   
   addNewPerson = (data) => {
-    const { name, surname, position } = data
+    const { name, surname, position, info } = data
     this.props.addNewPerson({
-      name, surname, position
+      name, surname, position, info
     })
   }
   
@@ -51,13 +50,19 @@ class PeoplePage extends Component {
     if (!people) return null
     
     return (
-      <div>
-        <h2>Список сотрудников</h2>
-        <PersonList 
-          people={people}
-          onPersonSelected={this.onPersonSelected}
-        />
-        <button type="button" onClick={this.onClickAddPerson}>Добавить</button>
+      <div className="people-page">
+        <h2 className="mb-4">Список сотрудников</h2>
+        <div className="mb-2">
+          <PersonList 
+            people={people}
+            onPersonSelected={this.onPersonSelected}
+          />
+        </div>
+        <button 
+          type="button"
+          className="btn btn-dark"
+          onClick={this.onClickAddPerson}
+        >Добавить</button>
       </div>
     )
   }

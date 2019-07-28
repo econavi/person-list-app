@@ -1,0 +1,13 @@
+.edit-form input,
+.edit-form textarea {
+  color: black;
+}
+
+.edit-form input::placeholder,
+.edit-form textarea::placeholder {
+  color: #c8c8c8;
+}
+
+.edit-form textarea {
+  height: 100px;
+}

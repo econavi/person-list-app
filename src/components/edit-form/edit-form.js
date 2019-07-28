@@ -6,17 +6,20 @@ import { closeModal } from '../../actions'
 
 import Input from '../input'
 
+import './edit-form.css'
+
 
 class EditForm extends Component {
   
   constructor(props) {
     super(props)
-    const { id, name, surname, position } = this.props.data
+    const { id, name, surname, position, info } = this.props.data
     this.state = {
       id,
       name,
       surname,
       position,
+      info,
       errors: {
         name: { mess: '', valid: true },
         surname: { mess: '', valid: true },
@@ -53,9 +56,9 @@ class EditForm extends Component {
       return
     }
     
-    const { id, name, surname, position } = this.state
+    const { id, name, surname, position, info } = this.state
     this.props.onChangeData({
-      id, name, surname, position
+      id, name, surname, position, info,
     })
     
     this.props.closeModal()
@@ -66,16 +69,22 @@ class EditForm extends Component {
     this.setState({ [name]: value })
   }
   
+  textareaOnChange = (event) => {
+    const { name, value } = event.target
+    this.setState({ [name]: value })
+  }
+  
   render() {
-    const { id, name, surname, position, errors } = this.state
+    const { id, name, surname, position, info, errors } = this.state
     return (
-      <div>
+      <div className="edit-form">
         <form>
           <div className="modal-body">
             <p>ID: {id}</p>
-            <Input error={!errors.name.valid ? errors.name.mess : null} onChange={this.inputOnChange} name="name" value={name} />
-            <Input error={!errors.surname.valid ? errors.surname.mess : null} onChange={this.inputOnChange} name="surname" value={surname} />
-            <Input error={!errors.position.valid ? errors.position.mess : null} onChange={this.inputOnChange} name="position" value={position} />
+            <Input error={!errors.name.valid ? errors.name.mess : null} onChange={this.inputOnChange} name="name" value={name} placeholder="Имя" />
+            <Input error={!errors.surname.valid ? errors.surname.mess : null} onChange={this.inputOnChange} name="surname" value={surname} placeholder="Фамилия" />
+            <Input error={!errors.position.valid ? errors.position.mess : null} onChange={this.inputOnChange} name="position" value={position} placeholder="Должность" />
+            <textarea name="info" value={info} onChange={this.textareaOnChange} placeholder="Описание" className="form-control" />
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" onClick={this.onCancel}>Отмена</button>
