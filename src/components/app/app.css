@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+  font-size: 14px;
+}
+
+#root {
+  height: 100%;
+}
+
+.text-danger {
+  color: #ffc8c8 !important;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  border-color: #ffc8c8;
+  background-image: none;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 10% 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.page__header {
+  margin-bottom: 10%;
+}
+
+.page__main {
+  flex-grow: 1;
+  margin-bottom: 30px;
+}
+
+.page__footer {
+  flex-shrink: 0;
+}
+
+.page * {
+  color: #dedede;
+}
+
+@media(min-width: 768px) {
+  .page {
+    padding: 5% 0;
+  }
+  
+  .page__header {
+    margin-bottom: 5%;
+  }
+}
