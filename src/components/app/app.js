@@ -5,13 +5,14 @@ import { PeoplePage, PersonDetailsPage } from '../pages'
 import Modal from '../modal'
 import SocBlock from '../soc-block'
 
+import mainLogo from './netology-group-logo.svg'
 import './app.css'
 
 const App = () => {
   return (
     <div className="page">
       <header className="page__header container">
-        <img src="/assets/netology-group-logo.svg" alt="Netology Group Logo"/>
+        <img src={mainLogo} alt="Netology Group Logo"/>
       </header>
       <main className="page__main">
         <div className="container">
