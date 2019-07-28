@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { closeModal } from '../../actions/'
- 
+
+import './modal.css'
+
 class Modal extends Component {
   
   close = () => {
@@ -19,7 +21,7 @@ class Modal extends Component {
     if (!modalIsOpen) return null
 
     return (
-      <div className="modal" style={{ display: 'block' }}>
+      <div className="modal">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
