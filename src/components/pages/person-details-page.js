@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -107,6 +108,15 @@ class PersonDetailsPage extends Component {
       </div>
     )
   }
+}
+
+PersonDetailsPage.propTypes = {
+  people: PropTypes.array,
+  person: PropTypes.object,
+  openModal: PropTypes.func.isRequired,
+  personLoaded: PropTypes.func.isRequired,
+  personUpdate: PropTypes.func.isRequired,
+  peopleLoaded: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({ people, selectedPersonData }) => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { closeModal } from '../../actions/'
 
@@ -38,6 +39,13 @@ class Modal extends Component {
       </div>
     )
   }
+}
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  modalIsOpen: PropTypes.bool,
+  modalTitle: PropTypes.string,
+  modalContent: PropTypes.element,
 }
 
 const mapStateToProps = ({ modalIsOpen, modalTitle, modalContent }) => {

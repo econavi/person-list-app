@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import PersonListItem from '../person-list-item'
 
@@ -30,6 +31,11 @@ const PersonList = ({ people, onPersonSelected }) => {
       </table>
     </div>
   )
+}
+
+PersonList.propTypes = {
+  people: PropTypes.array.isRequired,
+  onPersonSelected: PropTypes.func.isRequired,
 }
 
 export default PersonList
