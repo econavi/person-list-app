@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "976d62d505f5ad6819b98cd845f815d9",
+    "revision": "4030a0ed8a6a1da64587157ff6449040",
     "url": "/person-list-app/index.html"
   },
   {
-    "revision": "33abcb4711d67574be34",
+    "revision": "cd8b96b61429a38724bb",
     "url": "/person-list-app/static/css/main.39566a8b.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/person-list-app/static/js/2.9369287a.chunk.js"
   },
   {
-    "revision": "33abcb4711d67574be34",
-    "url": "/person-list-app/static/js/main.9c819669.chunk.js"
+    "revision": "cd8b96b61429a38724bb",
+    "url": "/person-list-app/static/js/main.b8b61840.chunk.js"
   },
   {
     "revision": "fdc1565c962b383114b7",
