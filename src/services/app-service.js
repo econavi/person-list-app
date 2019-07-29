@@ -11,9 +11,9 @@ export default class AppService {
       id: 1,
     },
     { 
-      name: 'Татьяна',
-      surname: 'Долгова',
-      position: 'HR',
+      name: 'Анастасия',
+      surname: 'Котова',
+      position: 'Бухгалтер',
       info: 'Главная героиня серии компьютерных игр Tomb Raider компании Square Enix. Является также персонажем фильмов, мультсериала, книг и комиксов.',
       id: 2,
     },
