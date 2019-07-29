@@ -16,7 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
       <AppServiceProvider value={appService}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <App />
         </Router>
       </AppServiceProvider>
