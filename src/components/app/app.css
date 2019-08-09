@@ -29,6 +29,10 @@ body {
   margin-bottom: 10%;
 }
 
+.page__header-logo {
+  width: 100px;
+}
+
 .page__main {
   flex-grow: 1;
   margin-bottom: 30px;
